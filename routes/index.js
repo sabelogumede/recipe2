@@ -35,7 +35,7 @@ exports = module.exports = function (app) {
 
 	// API
 
-	app.get('/api/people', routes.api.people.getpeoples);
+	app.get('/api/people', routes.api.people.list);
 	app.get('/api/people/:id', routes.api.people.get);
 	app.post('/api/people', routes.api.people.create);
 	app.put('/api/people/:id', routes.api.people.update);
@@ -53,11 +53,11 @@ exports = module.exports = function (app) {
 	app.put('/api/starships/:id', routes.api.starship.update);
 	app.delete('/api/starships/:id', routes.api.starship.remove);
 	
-	app.get('/recipe', routes.api.recipe.getrecipes);
-	app.get('/recipe/:id', routes.api.recipe.get);
-	app.post('/recipe', routes.api.recipe.create);
-	app.put('/recipe/:id', routes.api.recipe.update);
-	app.delete('/recipe/:id', routes.api.recipe.remove);
+	app.get('/api/recipes', routes.api.recipe.list);
+	app.get('/api/recipes/:id', routes.api.recipe.get);
+	app.post('/api/recipes', routes.api.recipe.create);
+	app.put('/api/recipes/:id', routes.api.recipe.update);
+	app.delete('api/recipes/:id', routes.api.recipe.remove);
 
 
 	// NOTE: To protect a route so that only admins can see it, use the requireUser middleware:

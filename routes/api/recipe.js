@@ -5,14 +5,14 @@ var Recipe = keystone.list('Recipe');
 /**
  * List Recipe
  */
-exports.getrecipes = function(req, res) {
+exports.list = function(req, res) {
     Recipe.model.find()
     Recipe.model.find()
     .exec(function(err, recipes) {
 		// do something with recipe
 		// create an array 
 		let results = []; 
-		if (err) return res.apiError('database error', err);
+		if (err) return res.json('database error', err);
 		//loop through recipes and ad to result 
 		for (var i = 0; i < recipes.length; i++){
 			results.push({
@@ -22,7 +22,7 @@ exports.getrecipes = function(req, res) {
 				buttontext: recipes[i].buttontex
 			  })
 		}
-		res.apiResponse(
+		res.json(
 			//return result 
 			results
 		);
@@ -39,7 +39,7 @@ exports.get = function(req, res) {
 	.exec(function(err, recipe){
 		// do something with users
 		if (err) return res.apiError('database error', err);
-		res.apiResponse({
+		res.json({
 		 title: recipe.title,
 		 article: recipe.article,
 		 img: recipe.img,
@@ -68,7 +68,7 @@ exports.create = function(req, res) {
 		console.log("created new recipe");
 	});
 
-	return res.apiResponse("created new recipe");
+	return res.json("created new recipe");
   }
 
   /**
@@ -89,7 +89,7 @@ exports.update = function(req, res) {
 
 			if (err) return res.apiError('create error', err);
 
-			res.apiResponse(
+			res.json(
 				recipe
 			);
 		});

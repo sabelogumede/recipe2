@@ -4,7 +4,7 @@ var People = keystone.list('People');
 /**
  * List People
  */
-exports.getpeoples = function(req, res) {
+exports.list = function(req, res) {
 //   People.model.find(function(err, items) {
 
 //     if (err) return res.json({ err: err });
