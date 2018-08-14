@@ -57,7 +57,7 @@ exports = module.exports = function (app) {
 	app.get('/api/recipes/:id', routes.api.recipe.get);
 	app.post('/api/recipes', routes.api.recipe.create);
 	app.put('/api/recipes/:id', routes.api.recipe.update);
-	app.delete('api/recipes/:id', routes.api.recipe.remove);
+	app.delete('/api/recipes/:id', routes.api.recipe.remove);
 
 
 	// NOTE: To protect a route so that only admins can see it, use the requireUser middleware:

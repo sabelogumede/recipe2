@@ -7,7 +7,6 @@ var Recipe = keystone.list('Recipe');
  */
 exports.list = function(req, res) {
     Recipe.model.find()
-    Recipe.model.find()
     .exec(function(err, recipes) {
 		// do something with recipe
 		// create an array 
@@ -19,7 +18,7 @@ exports.list = function(req, res) {
 				title: recipes[i].title,
 				article: recipes[i].article,
 				img: recipes[i].img,
-				buttontext: recipes[i].buttontex
+				buttontext: recipes[i].buttontext
 			  })
 		}
 		res.json(
@@ -79,15 +78,15 @@ exports.update = function(req, res) {
 	Recipe.model.findById(req.params.id)
 	.exec(function(err, recipe) {
 		// do something with users
-		if (err) return res.apiError('database error', err);
-		if (!recipe) return res.apiError('not found');
+		if (err) return res.json('database error', err);
+		if (!recipe) return res.json('not found');
 
 		var data = req.body;
 		// console.log(data)
 
 		recipe.getUpdateHandler(req).process(data, function(err) {
 
-			if (err) return res.apiError('create error', err);
+			if (err) return res.json('create error', err);
 
 			res.json(
 				recipe
@@ -103,13 +102,13 @@ exports.remove = function(req, res) {
     Recipe.model.findById(req.params.id)
 	.exec(function(err, recipe){
 	// do something with users
-	if (err) return res.apiError('database error', err);
-	if (!recipe) return res.apiError('not found');
+	if (err) return res.json('database error', err);
+	if (!recipe) return res.json('not found');
 
 		recipe.remove(function (err) {
-			if (err) return res.apiError('database error', err);
+			if (err) return res.json('database error', err);
 
-			res.json({
+			return res.json({
 				success: true
 			});
 		});
