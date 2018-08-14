@@ -109,7 +109,7 @@ exports.remove = function(req, res) {
 		recipe.remove(function (err) {
 			if (err) return res.apiError('database error', err);
 
-			res.apiResponse({
+			res.json({
 				success: true
 			});
 		});
